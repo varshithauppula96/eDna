@@ -1,0 +1,10 @@
+site,sample_date,sample_type,estuary,latitude,longitude,temperature,salinity,
+eddy,01/03/2016,sediment,sheepscot_river,43.994827,-69.648632,no_data,34
+lowes_cove,23/06/2016,worm_burrow,damariscotta_river,43.935341,-69.576683,19.5,32.5
+phippsburg,12/05/2016,sediment,kennebec_river,43.829338,-69.813313,15,14
+fort_popham,12/05/2016,sediment,kennebec_river,43.754614,-69.784838,17,32
+cape_shores,22/08/2013,sediment,lewes_delaware,38.7869444,-75.1074999,no_data,30
+
+###sample date as day/month/year
+###temperature in degrees celsius
+###salinity in practical salinity units (psu) 
