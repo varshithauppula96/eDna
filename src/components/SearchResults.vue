@@ -1,25 +1,9 @@
 <template>
+
+
+
   <!-- dynamically change cursor -->
   <div id="app-body" :style="{cursor : curCursor}">
-
-
-
-    <!-- Search Pane Component  -->
-    <div>
-      <search-pane
-          @changeCursor="updateCursor"
-          @searchAll="updateAll"
-          :base_path="base_path"
-          :species_names="species_names"
-          :pids="pids"
-          :sites="sites"
-          :dates="dates"
-          :types="types"
-          :lat_range="lat_range"
-          :lon_range="lon_range"
-          ref="search">
-      </search-pane>
-    </div>
 
     <!-- Map Compnent -->
     <div class = "my-map">
@@ -34,12 +18,18 @@
           :init_lon_range="init_lon_range">
       </app-map>
     </div>
+
     <!-- Search Pane Component  -->
     <div>
       <search-pane
           @changeCursor="updateCursor"
           @searchAll="updateAll"
           :base_path="base_path"
+          :species_names="species_names"
+          :pids="pids"
+          :sites="sites"
+          :dates="dates"
+          :types="types"
           :lat_range="lat_range"
           :lon_range="lon_range"
           :init_lat_range="init_lat_range"
@@ -47,6 +37,7 @@
           ref="search">
       </search-pane>
     </div>
+
     <!-- Results Component -->
     <div>
       <results-pane
@@ -64,18 +55,29 @@
   </div>
 </template>
 
+
 <script>
+import Vuetify from 'vuetify'
+
+
 // register components locally
 import MyMap from './Map.vue'
 import Search from './Search.vue'
 import Results from './Results.vue'
+
+
 // import { log } from 'util' // uncomment this if you want to log things to the browser console in devtools
-
 export default {
-    name: 'SearchResults',
 
+
+  components: {
+    'app-map': MyMap,
+    'search-pane': Search,
+    'results-pane': Results,
+  },
   data () {
     return {
+      reveal: false,
       base_path: 'https://edna.bigelow.org:3000/', // base url for HTTP requests. Use 3001 for development, 3000 for production
       species_names: [], // list of unique species names for search bar autofill list
       pids: [], // list of project IDs for search bar autofill list
@@ -132,15 +134,12 @@ export default {
       var lons = locations.map(o=>o.lon)
       this.lat_range = {min: Math.min.apply(null,lats)-1, max: Math.max.apply(null,lats)+1}
       this.lon_range = {min: Math.min.apply(null,lons)-1, max: Math.max.apply(null,lons)+1}
-
       // initialize red box on map to contain all data points
       // this.init_lat_range = this.lat_range
       // this.init_lon_range = this.lon_range
-
       // initialize red box on map to span Gulf of Maine
       this.init_lat_range = {min:43 ,max:44.6}
       this.init_lon_range = {min:-71 ,max:-68.4}
-
     },
     // update the data with the results of a search when a search is performed (occurs when searchAll event is emitted from Search.vue)
     updateAll: function (data, qstring, show, date_range) {
@@ -172,11 +171,9 @@ export default {
     },
     // update the red lat/lon box on the map
     latLonBox: function(vals){
-
       // update lat & lon
       this.lat_range = vals.lat_range
       this.lon_range = vals.lon_range
-
       // lat bounds checking
       if( this.lat_range.min < -90 ) {
         this.lat_range.min = -90
@@ -191,7 +188,6 @@ export default {
         var oldMax2 = this.lat_range.max
         this.lat_range.min = oldMax2
       }
-
       // lon bounds checking
       if( this.lon_range.min < -180 ) {
         this.lon_range.min = -180
@@ -208,8 +204,10 @@ export default {
       }
     },
   },
+
   // methods called when the Body component is first mounted
   mounted () {
+
     this.getSpecies()
     this.getPids()
     this.getSites()
@@ -220,11 +218,23 @@ export default {
 </script>
 
 <style scoped>
+.v-card--reveal {
+  bottom: 0;
+  opacity: 1 !important;
+  position: absolute;
+  width: 100%;
+}
 .my-map {
-  width: 75%;
+  width: 66%;
   margin-left: 2%;
   margin-right: 2%;
+  float: left;
   height: 100%;
-  padding-top:25px;
 }
+
+
+#app{
+  color: black;
+}
+
 </style>

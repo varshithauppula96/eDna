@@ -30,7 +30,7 @@
               <!-- Marker tooltips -->
               <l-tooltip :options="{permanent: false, interactive: true}">
                 <div>
-                  Site name: {{marker.name.replace("_"," ")}}<br>
+<!--                  {{marker.name.replace("_"," ")}}<br>-->
                   Coord: { {{marker.lat}}, {{marker.lon}} }
                 </div>
               </l-tooltip>
@@ -208,12 +208,8 @@ export default {
 }
 .map-box{
 
-
-  height: 450px;
-  /*width: 800px;*/
+  height: 300px;
   overflow: hidden;
-  padding:20px;
-  border-style: solid;
 
 }
 </style>
