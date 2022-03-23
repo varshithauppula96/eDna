@@ -64,6 +64,7 @@ import Vuetify from 'vuetify'
 import MyMap from './Map.vue'
 import Search from './Search.vue'
 import Results from './Results.vue'
+import $ from "jquery";
 
 
 // import { log } from 'util' // uncomment this if you want to log things to the browser console in devtools
@@ -151,6 +152,9 @@ export default {
       if(this.combined_data.length == 0) {
         this.updateCursor("default")
       }
+      console.log("Defining DataTable...");
+      $('#table_id').DataTable();
+      console.log("Defined DataTable.");
     },
     // update the current cursor
     updateCursor: function( newCursor ) {

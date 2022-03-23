@@ -187,9 +187,7 @@ header {
 
 }
 
-.more-space {
-  margin-bottom: 20%;
-}
+
 
 header h1 {
   color: #3285c9;

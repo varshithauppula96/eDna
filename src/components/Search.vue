@@ -65,14 +65,14 @@
       <!--      <label>Date Range:</label>-->
       <div class="datepickers">
 
-        <b-form-datepicker
+        <datepicker
 
             :clear-button="true"
             placeholder="Start Date"
             v-model="start_date">
-        </b-form-datepicker>
+        </datepicker>
 
-        <b-form-datepicker class="calendar "  placeholder="End Date" v-model="end_date"></b-form-datepicker>
+        <datepicker class="calendar "  placeholder="End Date" v-model="end_date"></datepicker>
       </div>
       <!-- Latitude Inputs -->
       <label  class="latitude">Latitude Range &nbsp &nbsp  </label>
@@ -187,6 +187,7 @@ export default {
     },
     // get date range & format date strigns for query_string
     getDate: function() {
+
       var min = this.dates.min.slice(0,10).split("-").join(".")
       var max = this.dates.max.slice(0,10).split("-").join(".")
       if( this.start_date != '' ) {

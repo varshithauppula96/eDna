@@ -208,7 +208,7 @@ export default {
 }
 .map-box{
 
-  height: 300px;
+  height: 390px;
   overflow: hidden;
 
 }

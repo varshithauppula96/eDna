@@ -1,4 +1,6 @@
+
 <template>
+
   <div class="results">
     <h3>Results</h3>
     <!-- Download button  -->
@@ -12,50 +14,22 @@
 
     <!-- Show message if search returned no results -->
     <h4 v-if="show_all && combined_data.length == 0">No results found.</h4>
-
-    <!-- Plot bar chart of top species by site -->
-    <species-barchart
-        :combined_data="combined_data"
-        :base_path="base_path"
-        @chartRendered="changeCursor">
-    </species-barchart>
-
-    <!-- Plot the heatmap -->
-    <species-heatmap
-        :combined_data="combined_data"
-        :base_path="base_path"
-        @chartRendered="changeCursor">
-    </species-heatmap>
-
+    <v-btn>
+      Click to expand table
+    </v-btn>
     <!-- Table of results-->
-    <table id="table_id" class="display" style="width:100%" v-if="show_all && combined_data.length > 0">
+    <table id="table_id"  v-if="show_all && combined_data.length > 0" style="width:100%">
       <!-- Column headers that can be clicked to sort by that column (arrow indicates ascending/descending) -->
       <thead>
       <tr>
-        <th>
-          <h6><a href="#" @click.prevent="sortBy('project_name')">PROJECT NAME {{arrow_col=="project_name" ? (arrow_up ? '&#x25B2;' : '&#x25BC;') : ''}}</a></h6>
-        </th>
-        <th>
-          <h6><a href="#" @click.prevent="sortBy('site_name')">SITE NAME {{arrow_col=="site_name" ? (arrow_up ? '&#x25B2;' : '&#x25BC;') : ''}}</a></h6>
-        </th>
-        <th>
-          <h6><a href="#" @click.prevent="sortBy('lat')">LATITUDE {{arrow_col=="lat" ? (arrow_up ? '&#x25B2;' : '&#x25BC;') : ''}}</a></h6>
-        </th>
-        <th>
-          <h6><a href="#" @click.prevent="sortBy('lon')">LONGITUDE {{arrow_col=="lon" ? (arrow_up ? '&#x25B2;' : '&#x25BC;') : ''}}</a></h6>
-        </th>
-        <th>
-          <h6><a href="#" @click.prevent="sortBy('date')">DATE {{arrow_col=="date" ? (arrow_up ? '&#x25B2;' : '&#x25BC;') : ''}}</a></h6>
-        </th>
-        <th>
-          <h6><a href="#" @click.prevent="sortBy('species')">SPECIES {{arrow_col=="species" ? (arrow_up ? '&#x25B2;' : '&#x25BC;') : ''}}</a></h6>
-        </th>
-        <th>
-          <h6><a href="#" @click.prevent="sortBy('count')">COUNT {{arrow_col=="count" ? (arrow_up ? '&#x25B2;' : '&#x25BC;') : ''}}</a></h6>
-        </th>
-        <th>
-          <h6><a href="#" @click.prevent="sortBy('type')">TYPE {{arrow_col=="type" ? (arrow_up ? '&#x25B2;' : '&#x25BC;') : ''}}</a></h6>
-        </th>
+        <th>PROJECT NAME</th>
+        <th>SITE NAME</th>
+        <th>LATITUDE</th>
+        <th>LONGITUDE</th>
+        <th>DATE</th>
+        <th>SPECIES</th>
+        <th>COUNT</th>
+        <th>TYPE</th>
       </tr>
       </thead>
       <!-- Data rows -->
@@ -72,19 +46,79 @@
       </tr>
       </tbody>
     </table>
+    <div class="container">
+      <div class="row h-100 text-center">
+        <div id="col" class="col-md-12 my-auto">
+          <h1 id="title">Visualise The Data</h1>
+          <button id="btn1" type="button" class="btn btn-light" data-card="card1">Bar Chart</button>
+          <button id="btn2" type="button" class="btn btn-light" data-card="card2">Heat Maps</button>
+<!--          <button id="btn3" type="button" class="btn btn-info" data-card="card3">Blueberries</button>-->
+<!--          <button id="btn4" type="button" class="btn btn-danger" data-card="card4">Watermelon</button>-->
+
+          <div class="card-deck">
+            <div id="card1" class="card">
+              <species-barchart
+                  :combined_data="combined_data"
+                  :base_path="base_path"
+                  @chartRendered="changeCursor">
+              </species-barchart>
+              <div class="card-body">
+                <h5 class="card-title">Bar Chart</h5>
+                <p class="card-text">A bar chart is a way of summarizing a set of categorical data (continuous data can be made categorical by auto-binning).</p> </div>
+            </div>
+            <div id="card2"class="card">
+              <species-heatmap
+                               :combined_data="combined_data"
+                               :base_path="base_path"
+                               @chartRendered="changeCursor">
+              </species-heatmap>
+              <div class="card-body">
+                <h5 class="card-title">Heat Map</h5>
+                <p class="card-text">A bar chart is a way of summarizing a set of categorical data (continuous data can be made categorical by auto-binning).</p> </div>
+            </div>
+<!--            <div id="card3"class="card">-->
+<!--              <img src="https://images.pexels.com/photos/1153655/pexels-photo-1153655.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="card-img-top cover" alt="...">-->
+<!--              <div class="card-body">-->
+<!--                <h5 class="card-title">Blueberries</h5>-->
+<!--                <p class="card-text">Blueberries are perennial flowering plants with blue or purple–colored berries. They are classified in the section Cyanococcus within the genus Vaccinium.</p>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div id="card4"class="card">-->
+<!--              <img src="https://cdn.suwalls.com/wallpapers/photography/sliced-watermelon-20523-2880x1800.jpg" class="card-img-top cover" alt="...">-->
+<!--              <div class="card-body">-->
+<!--                <h5 class="card-title">Watermelon</h5>-->
+<!--                <p class="card-text">Watermelon is a plant species in the family Cucurbitaceae, a vine-like flowering plant originating in West Africa. It is a highly cultivated fruit worldwide, having more than 1000 varieties.</p>-->
+<!--              </div>-->
+<!--            </div>-->
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+
+
+
+
   </div>
 </template>
 
 
 <script>
-
+import "jquery/dist/jquery.min.js";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "datatables.net-dt/js/dataTables.dataTables";
+import "datatables.net-dt/css/jquery.dataTables.min.css";
+import Vuetify from 'vuetify'
+import $ from 'jquery'
 import SpeciesBarchart from './SpeciesBarchart.vue'
 import SpeciesHeatmap from './SpeciesHeatmap.vue'
 import { log } from 'util';
 
 
-
 export default {
+
   name: "Results",
   components: {
     'species-barchart': SpeciesBarchart,
@@ -101,6 +135,9 @@ export default {
   },
   data () {
     return {
+      reveal: false,
+      revealHeatMap:false,
+      revealBarChart:false,
       arrow_col: "count",
       arrow_up: false,
       download_data: "",
@@ -112,14 +149,18 @@ export default {
   computed: {
     // first 100 rows of the data (only displays first 100 rows. In the Future: explore pagination)
     combined_data_100: function () {
+
       return this.combined_data
     }
 
   },
-  mounted(){
-    $('#table_id').DataTable();
-  },
+
   methods: {
+
+
+
+
+
     // sort the data by the given column & current sort (arrow) direction
     sortBy: function ( key ) {
       this.arrow_col = key
@@ -220,11 +261,28 @@ export default {
       }
     }
   },
+  mounted() {
+
+    $("#card1").hide();
+    $("#card2").hide();
+
+    $(".btn").on('click',function() {
+      var cardId = $(this).attr('data-card');
+      $('#'+cardId).toggle(300);
+    })
+
+    $(".btn").on('click',function() {
+      var str = $(this).text();
+      $("#title").html('I love '+str);
+    });
+
+
+  }
 
 }
 </script>
-<link rel="stylesheet" type="text/css" href="/DataTables/datatables.css">
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+
+
 <style>
 .results {
   margin-left: 2%;
@@ -232,15 +290,38 @@ export default {
   margin-bottom: 5%;
   margin-top: 2%;
 }
-.v-card--reveal {
-  bottom: 0;
-  opacity: 1 !important;
-  position: absolute;
-  width: 100%;
+
+
+
+*{
+  font-family: 'Inria Sans', sans-serif;
+}
+
+.container h1{
+  margin-bottom: 30px;
+}
+
+.container {
+  height: 100vh;
+}
+
+.card-deck{
+  margin-bottom: 30px;
+margin-top:30px;
+  padding-bottom: 20px;
 
 }
-.card{
-  color:black;
+
+.card img{
+  min-height: 200px;
+  max-height: 100%;
 }
+
+/*.cover {*/
+/*  object-fit: cover;*/
+/*  width: 50px;*/
+/*  height: 100px;*/
+/*}*/
+
 </style>
 

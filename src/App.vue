@@ -51,7 +51,7 @@ html, body {
 #app-body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	color: white;
+
 	//background-image: url("https://c4.wallpaperflare.com/wallpaper/159/917/66/sea-horizon-minimalism-gray-wallpaper-preview.jpg");
 	background: white;
   background-repeat: no-repeat;
