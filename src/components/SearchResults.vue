@@ -58,19 +58,13 @@
 
 <script>
 import Vuetify from 'vuetify'
-
-
 // register components locally
 import MyMap from './Map.vue'
 import Search from './Search.vue'
 import Results from './Results.vue'
 import $ from "jquery";
-
-
 // import { log } from 'util' // uncomment this if you want to log things to the browser console in devtools
 export default {
-
-
   components: {
     'app-map': MyMap,
     'search-pane': Search,
@@ -171,7 +165,6 @@ export default {
                             `&datemin=${this.date_range.min}&datemax=${this.date_range.max}&site=${siteName.toLowerCase()}`
         this.show_all = true
       })
-
     },
     // update the red lat/lon box on the map
     latLonBox: function(vals){
@@ -208,10 +201,8 @@ export default {
       }
     },
   },
-
   // methods called when the Body component is first mounted
   mounted () {
-
     this.getSpecies()
     this.getPids()
     this.getSites()
@@ -235,10 +226,7 @@ export default {
   float: left;
   height: 100%;
 }
-
-
 #app{
   color: black;
 }
-
 </style>

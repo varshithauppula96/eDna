@@ -4,24 +4,24 @@
     <b-form @submit.prevent="getData" @keyup.enter="getData" @reset.prevent="clearSearch">
 
       <!-- Site Name Search Box -->
-<!--      <label>Site Name: </label>-->
-<!--      <br/>-->
+      <!--      <label>Site Name: </label>-->
+      <!--      <br/>-->
       <multiselect class="multiselect"
 
-          v-model="sites_search_items"
-          :options="sites"
-          :multiple="true"
-          :searchable="true"
-          :clear-on-select="false"
-          :close-on-select="false"
-          placeholder="Search by site name"
-          style="margin-bottom: 1rem;">
+                   v-model="sites_search_items"
+                   :options="sites"
+                   :multiple="true"
+                   :searchable="true"
+                   :clear-on-select="false"
+                   :close-on-select="false"
+                   placeholder="Search by site name"
+                   style="margin-bottom: 1rem;">
 
       </multiselect>
 
       <!-- Species Search Box -->
-<!--      <label>Species: </label>-->
-<!--      <br/>-->
+      <!--      <label>Species: </label>-->
+      <!--      <br/>-->
       <multiselect
           v-model="species_search_items"
           :options="species_names"
@@ -34,8 +34,8 @@
       </multiselect>
 
       <!-- Project IDs Search Box -->
-<!--      <label>Project Name: </label>-->
-<!--      <br/>-->
+      <!--      <label>Project Name: </label>-->
+      <!--      <br/>-->
       <multiselect
           v-model="pids_search_items"
           :options="pids"
@@ -48,8 +48,8 @@
       </multiselect>
 
       <!-- Data Types Search Box -->
-<!--      <label>Data Type: </label>-->
-<!--      <br/>-->
+      <!--      <label>Data Type: </label>-->
+      <!--      <br/>-->
       <multiselect
           v-model="types_search_items"
           :options="types"
@@ -57,23 +57,24 @@
           :searchable="true"
           :clear-on-select="false"
           :close-on-select="false"
-          placeholder="Search by data type"
-          style="margin-bottom: 1rem;">
+          placeholder="Search by data type">
       </multiselect>
 
       <!-- Date Pickers -->
       <!--      <label>Date Range:</label>-->
-      <div class="datepickers">
 
         <datepicker
-
+            class="calendar "
             :clear-button="true"
             placeholder="Start Date"
+
+
             v-model="start_date">
         </datepicker>
 
-        <datepicker class="calendar "  placeholder="End Date" v-model="end_date"></datepicker>
-      </div>
+        <datepicker class="calendar "  :clear-button="true" placeholder="End Date" v-model="end_date"
+                  ></datepicker>
+
       <!-- Latitude Inputs -->
       <label  class="latitude">Latitude Range &nbsp &nbsp  </label>
 
@@ -91,9 +92,6 @@
       <br/>
       <!-- <latlon-slider v-model="lon_range" :init_min="-180" :init_max="180"></latlon-slider> -->
 
-<br>
-      <br>
-      <br>
 
       <!-- Search & Reset Buttons -->
       <b-button class="p-md-2" variant="outline-light" style="width: 100px; margin-bottom: 1rem; color: #004949;" type="submit">Search</b-button>
@@ -105,7 +103,7 @@
 
 <script>
 import Vuetify from 'vuetify'
-import Datepicker from 'vuejs-datepicker'
+import Datepicker from 'vuejs-datepicker';
 import Multiselect from 'vue-multiselect'
 // import Sliders from './Sliders.vue'
 // import { log } from 'util';
@@ -187,13 +185,11 @@ export default {
     },
     // get date range & format date strigns for query_string
     getDate: function() {
-
       var min = this.dates.min.slice(0,10).split("-").join(".")
       var max = this.dates.max.slice(0,10).split("-").join(".")
       if( this.start_date != '' ) {
         console.log(this.start_date.getFullYear());
         min = this.start_date.getFullYear() + '.' + (this.start_date.getMonth() + 1) + '.' + this.start_date.getDate()
-
       }
       if( this.end_date != '' ) {
         max = this.end_date.getFullYear() + '.' + (this.end_date.getMonth()+1) + '.' + this.end_date.getDate()
@@ -222,12 +218,10 @@ export default {
 
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <style>
-
 h3{
   text-align: center;
   padding-bottom:  4px;
 }
-
 #search-pane {
   margin-left: 72%;
   margin-right: 2%;
@@ -238,7 +232,6 @@ h3{
   text-align: center;
   color: black;
 }
-
 .calendar {
   color: #004949;
   margin-bottom: 1em;
@@ -251,19 +244,14 @@ button{
 }
 .input-box {
   width: 25%;
-
 }
-
 .longitutde{
   padding-right: 8px;
 }
-
 .latitude{
   padding-right: 3px;
 }
 .multiselect{
   min-height: 3px;
 }
-
-
 </style>
