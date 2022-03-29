@@ -1,7 +1,5 @@
 <template>
 
-
-
   <!-- dynamically change cursor -->
   <div id="app-body" :style="{cursor : curCursor}">
 
@@ -146,9 +144,15 @@ export default {
       if(this.combined_data.length == 0) {
         this.updateCursor("default")
       }
-      console.log("Defining DataTable...");
-      $('#table_id').DataTable();
-      console.log("Defined DataTable.");
+      // console.log("Defining DataTable...");
+      // $('#table_id').DataTable({
+      //                            "scrollY": 200,
+      //                            "scrollX": true,
+      //                            destroy: true,
+      //                            searching: false
+      //                          });
+      // console.log("Defined DataTable.");
+
     },
     // update the current cursor
     updateCursor: function( newCursor ) {
@@ -203,6 +207,7 @@ export default {
   },
   // methods called when the Body component is first mounted
   mounted () {
+
     this.getSpecies()
     this.getPids()
     this.getSites()

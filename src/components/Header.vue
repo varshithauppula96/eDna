@@ -1,7 +1,7 @@
 <template>
 
         <navbar id="f-navbar"
-             class="navbar navbar-custom navbar-expand-lg shadow-lg p-1px mb-5 navbar-dark bg-white rounded"
+             class="navbar navbar-custom navbar-expand-lg shadow-lg p-1px mb-4 navbar-dark bg-white rounded"
              v-bind:class="[isSticky ? stickyClass : '']">
           <b-navbar-brand id="title"><router-link to="/" exact>{{title}}</router-link></b-navbar-brand>
           <b-navbar-nav class="ml-auto" >

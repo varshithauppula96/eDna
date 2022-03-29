@@ -1,8 +1,8 @@
 
 <template>
-
+<div class="toggleResults">
   <div class="results">
-    <h3>Results</h3>
+    <h1 style="text-align: center">Results</h1>
     <!-- Download button  -->
     <b-button
         style="float:center;"
@@ -14,11 +14,11 @@
 
     <!-- Show message if search returned no results -->
     <h4 v-if="show_all && combined_data.length == 0">No results found.</h4>
-    <v-btn>
-      Click to expand table
-    </v-btn>
+
+
+    <div id ="tablebox">
     <!-- Table of results-->
-    <table id="table_id"  v-if="show_all && combined_data.length > 0" style="width:100%">
+    <table id="table_id"  class="display nowrap" style="width:100%">
       <!-- Column headers that can be clicked to sort by that column (arrow indicates ascending/descending) -->
       <thead>
       <tr>
@@ -34,8 +34,18 @@
       </thead>
       <!-- Data rows -->
       <tbody>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <!-- get date part, not time -->
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
       <tr v-for="(obj,idx) in this.combined_data_100" :key="idx">
-        <td>{{obj.proj}}</td>
         <td>{{obj.site_name.replace("_"," ")}}</td>
         <td>{{obj.lat!=null ? obj.lat : 'N/A'}}</td>
         <td>{{obj.lon!=null ? obj.lon : 'N/A'}}</td>
@@ -46,11 +56,10 @@
       </tr>
       </tbody>
     </table>
-    <br>
+      </div>
     <br>
     <br>
 
-    <br>
     <div class="container-fluid">
       <div class="row h-100 text-center">
         <div id="col" class="col-md-12 my-auto">
@@ -69,9 +78,9 @@
               </species-barchart>
               <div class="card-body">
                 <h5 class="card-title">Bar Chart</h5>
-                <p class="card-text">A bar chart is a way of summarizing a set of categorical data (continuous data can be made categorical by auto-binning).</p> </div>
+                <p class="card-text">A bar chart or bar graph is a chart or graph that presents categorical data with rectangular bars with heights or lengths proportional to the values that they represent.</p> </div>
             </div>
-            <div id="card2"class="card">
+            <div id="card2" class="card">
               <species-heatmap
                   :combined_data="combined_data"
                   :base_path="base_path"
@@ -79,7 +88,9 @@
               </species-heatmap>
               <div class="card-body">
                 <h5 class="card-title">Heat Map</h5>
-                <p class="card-text">A bar chart is a way of summarizing a set of categorical data (continuous data can be made categorical by auto-binning).</p> </div>
+                <p class="card-text">A heat map is a data
+                  visualization technique that shows magnitude of a phenomenon as
+                  color in two dimensions.</p> </div>
             </div>
             <!--            <div id="card3"class="card">-->
             <!--              <img src="https://images.pexels.com/photos/1153655/pexels-photo-1153655.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="card-img-top cover" alt="...">-->
@@ -105,7 +116,7 @@
 
 
 
-
+  </div>
   </div>
 </template>
 
@@ -137,9 +148,7 @@ export default {
   },
   data () {
     return {
-      reveal: false,
-      revealHeatMap:false,
-      revealBarChart:false,
+      toggleResults:false,
       arrow_col: "count",
       arrow_up: false,
       download_data: "",
@@ -155,6 +164,8 @@ export default {
     }
   },
   methods: {
+
+
     // sort the data by the given column & current sort (arrow) direction
     sortBy: function ( key ) {
       this.arrow_col = key
@@ -256,6 +267,14 @@ export default {
     }
   },
   mounted() {
+    console.log("Defining DataTable...");
+    $('#table_id').DataTable({
+                               "scrollY": 200,
+                               "scrollX": true,
+                               destroy: true,
+                               searching: false
+                             });
+    console.log("Defined DataTable.");
     $("#card1").hide();
     $("#card2").hide();
     $(".btn").on('click',function() {
@@ -264,7 +283,7 @@ export default {
     })
     $(".btn").on('click',function() {
       var str = $(this).text();
-      $("#title").html('I love '+str);
+      $("#title").html(lstr);
     });
   }
 }
@@ -296,6 +315,11 @@ export default {
   min-height: 200px;
   max-height: 100%;
 }
+
+
+
+
+
 /*.cover {*/
 /*  object-fit: cover;*/
 /*  width: 50px;*/
