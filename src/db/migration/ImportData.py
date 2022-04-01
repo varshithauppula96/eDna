@@ -24,7 +24,7 @@ from psycopg2 import Error
 #           - The column headers must be the sample names (these 'sample names' are for identificatin purposes during import. they aren't displayed anywhere in the web app)
 #           - Must contain the following rows in the following order: Sample ID, Month, Day, Year
 #           - See edna-app/src/db/data/highland_lake_dates.csv for an example
-#       species_file: CSV file containing the taxonomic information for all species being imported
+#       taxonomy_file: CSV file containing the taxonomic information for all species being imported
 #           - Must contain all or a subset of the columns listed in species_file_columns below (in the getUserDefinedParameters() function).
 #           - The asv and sequence columns are REQUIRED (check yourself because the code doesn't currently check for you)
 #           - The order in which the columns are listed in species_file_columns is the order in which the columns must appear in your CSV file
