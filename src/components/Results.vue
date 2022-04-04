@@ -22,14 +22,14 @@
           <!-- Column headers that can be clicked to sort by that column (arrow indicates ascending/descending) -->
           <thead>
           <tr>
-            <th>PROJECT NAME</th>
-            <th>SITE NAME</th>
-            <th>LATITUDE</th>
-            <th>LONGITUDE</th>
-            <th>DATE</th>
-            <th>SPECIES</th>
-            <th>COUNT</th>
-            <th>TYPE</th>
+            <th><a class="tableLink" href="#" @click.prevent="sortBy('project_name')">PROJECT NAME {{arrow_col=="project_name" ? (arrow_up ? '&#x25B2;' : '&#x25BC;') : ''}}</a></th>
+            <th><a class="tableLink" href="#" @click.prevent="sortBy('site_name')">SITE NAME {{arrow_col=="site_name" ? (arrow_up ? '&#x25B2;' : '&#x25BC;') : ''}}</a></th>
+            <th><a class="tableLink" href="#" @click.prevent="sortBy('lat')">LATITUDE {{arrow_col=="lat" ? (arrow_up ? '&#x25B2;' : '&#x25BC;') : ''}}</a></th>
+            <th><a class="tableLink" href="#" @click.prevent="sortBy('lon')">LONGITUDE {{arrow_col=="lon" ? (arrow_up ? '&#x25B2;' : '&#x25BC;') : ''}}</a></th>
+            <th><a class="tableLink" href="#" @click.prevent="sortBy('date')">DATE {{arrow_col=="date" ? (arrow_up ? '&#x25B2;' : '&#x25BC;') : ''}}</a></th>
+            <th><a class="tableLink" href="#" @click.prevent="sortBy('species')">SPECIES {{arrow_col=="species" ? (arrow_up ? '&#x25B2;' : '&#x25BC;') : ''}}</a></th>
+            <th><a class="tableLink" href="#" @click.prevent="sortBy('count')">COUNT {{arrow_col=="count" ? (arrow_up ? '&#x25B2;' : '&#x25BC;') : ''}}</a></th>
+            <th><a class="tableLink" href="#" @click.prevent="sortBy('type')">TYPE {{arrow_col=="type" ? (arrow_up ? '&#x25B2;' : '&#x25BC;') : ''}}</a></th>
           </tr>
           </thead>
           <!-- Data rows -->
@@ -277,7 +277,8 @@ export default {
                                "info": true,
                                "lengthChange": false,
                                "bLengthChange": false,
-                               paging: false,
+
+                               paging: true,
                                searching: false,
                                retrieve: true,
                              });
@@ -298,6 +299,9 @@ export default {
 
 
 <style>
+.tableLink{
+  color: black;
+}
 .results {
   margin-left: 2%;
   margin-right: 2%;

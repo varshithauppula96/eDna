@@ -163,7 +163,8 @@ export default {
                                  "info": true,
                                  "lengthChange": false,
                                  "bLengthChange": false,
-                                 paging: false,
+
+                                 paging: true,
                                  searching: false,
                                  retrieve: true,
                                });
