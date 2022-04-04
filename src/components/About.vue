@@ -3,9 +3,9 @@
     <div class="content">
       <h1>About eDNA</h1>
       <p>
-        This is a tool to view and download information about eDNA samples.
-        <br> The eDNA information can also be downloaded using<a :href=cli> this command line interface.</a>
-        <br> To find out more about this project<a :href=web> click here.</a>
+        This is a data tool in development for accessing and visualizing aquatic environmental metabarcoding data
+        <br> Data can also be downloaded using the command line interface <a :href=cli> this command line interface.</a>
+        <br>  To read more about the project <a :href=web> click here.</a>
       </p>
     </div>
   </div>

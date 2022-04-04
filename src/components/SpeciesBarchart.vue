@@ -81,7 +81,7 @@ export default {
                         text: `Relative Abundance of Top Species in Most Recent Samples`, // up to 100 currently returned by backend
                         adjustLayout: true,
                         paddingBottom: '2rem',
-                        fontSize: '24px'
+                        fontSize: '18px'
                     },
                     plot: {
                         stacked: true,

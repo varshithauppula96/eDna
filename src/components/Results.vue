@@ -1,122 +1,123 @@
 
 <template>
-<div class="toggleResults">
-  <div class="results">
-    <h1 style="text-align: center">Results</h1>
-    <!-- Download button  -->
-    <b-button
-        style="float:center;"
-        @click.prevent="getDownload"
-        v-if="show_all && !downloading && combined_data.length > 0">
-      Download Raw Data
-    </b-button>
-    <p>{{download_data}}</p>
+  <div class="toggleResults">
+    <div class="results">
+      <h1 style="text-align: center">Results</h1>
+      <!-- Download button  -->
+      <b-button
+          style="float:center;"
+          @click.prevent="getDownload"
+          v-if="show_all && !downloading && combined_data.length > 0">
+        Download Raw Data
+      </b-button>
+      <p>{{download_data}}</p>
 
-    <!-- Show message if search returned no results -->
-    <h4 v-if="show_all && combined_data.length == 0">No results found.</h4>
+      <!-- Show message if search returned no results -->
+      <h4 v-if="show_all && combined_data.length == 0">No results found.</h4>
 
 
-    <div id ="tablebox">
-    <!-- Table of results-->
-    <table id="table_id"  class="display nowrap" style="width:100%">
-      <!-- Column headers that can be clicked to sort by that column (arrow indicates ascending/descending) -->
-      <thead>
-      <tr>
-        <th>PROJECT NAME</th>
-        <th>SITE NAME</th>
-        <th>LATITUDE</th>
-        <th>LONGITUDE</th>
-        <th>DATE</th>
-        <th>SPECIES</th>
-        <th>COUNT</th>
-        <th>TYPE</th>
-      </tr>
-      </thead>
-      <!-- Data rows -->
-      <tbody>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <!-- get date part, not time -->
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr v-for="(obj,idx) in this.combined_data_100" :key="idx">
-        <td>{{obj.site_name.replace("_"," ")}}</td>
-        <td>{{obj.lat!=null ? obj.lat : 'N/A'}}</td>
-        <td>{{obj.lon!=null ? obj.lon : 'N/A'}}</td>
-        <td>{{obj.date!=null ? obj.date.slice(0,10) : 'N/A'}}</td>    <!-- get date part, not time -->
-        <td>{{obj.species.replace("_"," ")}}</td>
-        <td>{{obj.count}}</td>
-        <td>{{obj.type}}</td>
-      </tr>
-      </tbody>
-    </table>
+      <div id ="tablebox">
+        <!-- Table of results-->
+        <table id="table_id"  class="display nowrap" style="width:100%">
+          <!-- Column headers that can be clicked to sort by that column (arrow indicates ascending/descending) -->
+          <thead>
+          <tr>
+            <th>PROJECT NAME</th>
+            <th>SITE NAME</th>
+            <th>LATITUDE</th>
+            <th>LONGITUDE</th>
+            <th>DATE</th>
+            <th>SPECIES</th>
+            <th>COUNT</th>
+            <th>TYPE</th>
+          </tr>
+          </thead>
+          <!-- Data rows -->
+          <tbody>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <!-- get date part, not time -->
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr v-for="(obj,idx) in this.combined_data_100" :key="idx">
+            <td>{{obj.proj}}</td>
+            <td>{{obj.site_name.replace("_"," ")}}</td>
+            <td>{{obj.lat!=null ? obj.lat : 'N/A'}}</td>
+            <td>{{obj.lon!=null ? obj.lon : 'N/A'}}</td>
+            <td>{{obj.date!=null ? obj.date.slice(0,10) : 'N/A'}}</td>    <!-- get date part, not time -->
+            <td>{{obj.species.replace("_"," ")}}</td>
+            <td>{{obj.count}}</td>
+            <td>{{obj.type}}</td>
+          </tr>
+          </tbody>
+        </table>
       </div>
-    <br>
-    <br>
+      <br>
+      <br>
 
-    <div class="container-fluid">
-      <div class="row h-100 text-center">
-        <div id="col" class="col-md-12 my-auto">
-          <h1 id="title">Visualise The Data</h1>
-          <button id="btn1" type="button" class="btn btn-light" data-card="card1">Bar Chart</button>
-          <button id="btn2" type="button" class="btn btn-light" data-card="card2">Heat Maps</button>
-          <!--          <button id="btn3" type="button" class="btn btn-info" data-card="card3">Blueberries</button>-->
-          <!--          <button id="btn4" type="button" class="btn btn-danger" data-card="card4">Watermelon</button>-->
+      <div class="container-fluid">
+        <div class="row h-100 text-center">
+          <div id="col" class="col-md-12 my-auto">
+            <h1 id="title">Visualise The Data</h1>
+            <button id="btn1" type="button" class="btn btn-light" data-card="card1">Bar Chart</button>
+            <button id="btn2" type="button" class="btn btn-light" data-card="card2">Heat Maps</button>
+            <!--          <button id="btn3" type="button" class="btn btn-info" data-card="card3">Blueberries</button>-->
+            <!--          <button id="btn4" type="button" class="btn btn-danger" data-card="card4">Watermelon</button>-->
 
-          <div class="card-deck">
-            <div id="card1" class="card">
-              <species-barchart
-                  :combined_data="combined_data"
-                  :base_path="base_path"
-                  @chartRendered="changeCursor">
-              </species-barchart>
-              <div class="card-body">
-                <h5 class="card-title">Bar Chart</h5>
-                <p class="card-text">A bar chart or bar graph is a chart or graph that presents categorical data with rectangular bars with heights or lengths proportional to the values that they represent.</p> </div>
+            <div class="card-deck">
+              <div id="card1" class="card">
+                <species-barchart
+                    :combined_data="combined_data"
+                    :base_path="base_path"
+                    @chartRendered="changeCursor">
+                </species-barchart>
+                <div class="card-body">
+                  <h5 class="card-title">Bar Chart</h5>
+                  <p class="card-text">A bar chart or bar graph is a chart or graph that presents categorical data with rectangular bars with heights or lengths proportional to the values that they represent.</p> </div>
+              </div>
+              <div id="card2" class="card">
+                <species-heatmap
+                    :combined_data="combined_data"
+                    :base_path="base_path"
+                    @chartRendered="changeCursor">
+                </species-heatmap>
+                <div class="card-body">
+                  <h5 class="card-title">Heat Map</h5>
+                  <p class="card-text">A heat map is a data
+                    visualization technique that shows magnitude of a phenomenon as
+                    color in two dimensions.</p> </div>
+              </div>
+              <!--            <div id="card3"class="card">-->
+              <!--              <img src="https://images.pexels.com/photos/1153655/pexels-photo-1153655.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="card-img-top cover" alt="...">-->
+              <!--              <div class="card-body">-->
+              <!--                <h5 class="card-title">Blueberries</h5>-->
+              <!--                <p class="card-text">Blueberries are perennial flowering plants with blue or purple–colored berries. They are classified in the section Cyanococcus within the genus Vaccinium.</p>-->
+              <!--              </div>-->
+              <!--            </div>-->
+              <!--            <div id="card4"class="card">-->
+              <!--              <img src="https://cdn.suwalls.com/wallpapers/photography/sliced-watermelon-20523-2880x1800.jpg" class="card-img-top cover" alt="...">-->
+              <!--              <div class="card-body">-->
+              <!--                <h5 class="card-title">Watermelon</h5>-->
+              <!--                <p class="card-text">Watermelon is a plant species in the family Cucurbitaceae, a vine-like flowering plant originating in West Africa. It is a highly cultivated fruit worldwide, having more than 1000 varieties.</p>-->
+              <!--              </div>-->
+              <!--            </div>-->
             </div>
-            <div id="card2" class="card">
-              <species-heatmap
-                  :combined_data="combined_data"
-                  :base_path="base_path"
-                  @chartRendered="changeCursor">
-              </species-heatmap>
-              <div class="card-body">
-                <h5 class="card-title">Heat Map</h5>
-                <p class="card-text">A heat map is a data
-                  visualization technique that shows magnitude of a phenomenon as
-                  color in two dimensions.</p> </div>
-            </div>
-            <!--            <div id="card3"class="card">-->
-            <!--              <img src="https://images.pexels.com/photos/1153655/pexels-photo-1153655.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="card-img-top cover" alt="...">-->
-            <!--              <div class="card-body">-->
-            <!--                <h5 class="card-title">Blueberries</h5>-->
-            <!--                <p class="card-text">Blueberries are perennial flowering plants with blue or purple–colored berries. They are classified in the section Cyanococcus within the genus Vaccinium.</p>-->
-            <!--              </div>-->
-            <!--            </div>-->
-            <!--            <div id="card4"class="card">-->
-            <!--              <img src="https://cdn.suwalls.com/wallpapers/photography/sliced-watermelon-20523-2880x1800.jpg" class="card-img-top cover" alt="...">-->
-            <!--              <div class="card-body">-->
-            <!--                <h5 class="card-title">Watermelon</h5>-->
-            <!--                <p class="card-text">Watermelon is a plant species in the family Cucurbitaceae, a vine-like flowering plant originating in West Africa. It is a highly cultivated fruit worldwide, having more than 1000 varieties.</p>-->
-            <!--              </div>-->
-            <!--            </div>-->
           </div>
+
+
         </div>
-
-
       </div>
+
+
+
+
     </div>
-
-
-
-
-  </div>
   </div>
 </template>
 
@@ -271,8 +272,14 @@ export default {
     $('#table_id').DataTable({
                                "scrollY": 200,
                                "scrollX": true,
-                               destroy: true,
-                               searching: false
+                               // destroy: true,
+                               "ordering": false,
+                               "info": true,
+                               "lengthChange": false,
+                               "bLengthChange": false,
+                               paging: false,
+                               searching: false,
+                               retrieve: true,
                              });
     console.log("Defined DataTable.");
     $("#card1").hide();

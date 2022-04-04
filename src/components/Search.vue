@@ -94,6 +94,7 @@
 
 
       <!-- Search & Reset Buttons -->
+
       <b-button class="p-md-2" variant="outline-light" style="width: 100px; margin-top: 1rem; color: #004949;" type="submit">Search</b-button>
       <b-button class="p-md-2" variant="outline-light" style="width: 100px; margin-top: 1rem; margin-left: 1rem; color: #004949;" type="reset">Reset</b-button>
 

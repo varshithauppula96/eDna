@@ -8,7 +8,7 @@
             <b-nav-item><router-link to="/" exact>Home</router-link></b-nav-item>
             <b-nav-item><router-link to="/about" exact>About</router-link></b-nav-item>
             <b-nav-item><router-link to="/contact" exact>Contact</router-link></b-nav-item>
-            <b-nav-item><router-link to="/result" exact>Search Edna</router-link></b-nav-item>
+
 
           </b-navbar-nav>
           </navbar>
@@ -77,13 +77,6 @@ a:hover{
 
 }
 
-
-
-
-
- .break1, .break2, .contact h2, .contact h3, p, header h4 {
-   font-family: "Coming Soon", sans-serif;
- }
 
 
 

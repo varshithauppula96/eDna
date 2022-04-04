@@ -29,11 +29,11 @@ export default {
 .footer{
     bottom: 0;
     width: 100%;
-    height: 16rem;
+    height: 8rem;
     background-color: #a7c8db;
 
 
-    color: #AAE8E8;
+    color: black;
     float: left;
     overflow: hidden;
 }
